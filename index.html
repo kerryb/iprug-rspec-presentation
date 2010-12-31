@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <!-- Slide meta data, remove/edit as you see fit -->
+    <title>RSpec</title>
+    <meta name="author" content="Kerry Buckley" />
+    <meta name="email" content="kerry.buckley@gmail.com" />
+    <meta name="date" content="2011-01-04" />
+    <meta name="venue" content="Ipswich Ruby User Group" />
+    <!-- Slippy core file and dependencies -->
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="jquery.history.js"></script>
+    <script type="text/javascript" src="slippy-0.9.0.js"></script>
+    <!-- Slippy structural styles -->
+    <link type="text/css" rel="stylesheet" href="slippy-0.9.0.css"/>
+    <!-- Slippy theme -->
+    <link type="text/css" rel="stylesheet" href="slippy-kerryb.css"/>
+    <!-- Syntax highlighting core file  -->
+    <script type="text/javascript" src="highlighter/shCore.js"></script>
+    <!-- Syntax highlighting brushes, remove those you don't need -->
+    <script type="text/javascript" src="highlighter/shBrushBash.js"></script>
+    <script type="text/javascript" src="highlighter/shBrushRuby.js"></script>
+    <!-- Syntax highlighting styles-->
+    <link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
+    <!-- Slippy init code -->
+    <script type="text/javascript">
+      $(function() {
+          $(".slide").slippy({
+            });
+          SyntaxHighlighter.all();
+          });
+    </script>
+  </head>
+  <body>
+    <div class="slide">
+      <div class="vcenter">
+        <h1>RSpec</h1>
+        <h2 class="center">Kerry Buckley<br />IPRUG, 4 January 2011</h2>
+      </div>
+    </div>
+    <div class="slide">
+      <h1>Basics</h1>
+      <div class="vcenter">
+        <pre class="brush: ruby; gutter: false">
+          describe "something" do
+            it "does something" do
+              ...
+            end
+          end
+        </pre>
+      </div>
+    </div>
+  </body>
+</html>
