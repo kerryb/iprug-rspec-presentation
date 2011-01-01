@@ -11,17 +11,16 @@
     <!-- Slippy core file and dependencies -->
     <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="jquery.history.js"></script>
+    <script type="text/javascript" src="kerryb.js"></script>
     <script type="text/javascript" src="slippy-0.9.0.js"></script>
     <!-- Slippy structural styles -->
     <link type="text/css" rel="stylesheet" href="slippy-0.9.0.css"/>
     <!-- Slippy theme -->
     <link type="text/css" rel="stylesheet" href="slippy-kerryb.css"/>
-    <!-- Syntax highlighting core file  -->
+    <!-- Syntax highlighting -->
     <script type="text/javascript" src="highlighter/shCore.js"></script>
-    <!-- Syntax highlighting brushes, remove those you don't need -->
     <script type="text/javascript" src="highlighter/shBrushBash.js"></script>
     <script type="text/javascript" src="highlighter/shBrushRuby.js"></script>
-    <!-- Syntax highlighting styles-->
     <link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
     <link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
     <!-- Slippy init code -->
@@ -50,18 +49,20 @@
       <h2>Clear, concise and readable</h2>
       <div class="comparison">
         <div class="left">
-          <pre class="brush: ruby; gutter: false">
+          <pre class="ruby">
             class StackTest < Test::Unit
               def setup
                 @stack = Stack.new
               end
 
               def test_new_is_empty
-                assert_equal true, @stack.empty?
+                assert_equal true,
+                  @stack.empty?
               end
 
               def test_new_has_size_0
-                assert_equal 0, @stack.size
+                assert_equal 0,
+                  @stack.size
               end
             end
           </pre>
@@ -70,7 +71,7 @@
           <p>vs</p>
         </div>
         <div class="right">
-          <pre class="brush: ruby; gutter: false">
+          <pre class="ruby">
             describe Stack do
               context "when new" do
                 subject { Stack.new }
@@ -112,7 +113,7 @@
     <div class="slide">
       <h1>Basics</h1>
       <div class="vcenter">
-        <pre class="brush: ruby; gutter: false">
+        <pre class="ruby">
           describe "Rain" do
             it "is wet" do
               ...
@@ -125,7 +126,7 @@
     <div class="slide">
       <h1>Contexts</h1>
       <div class="vcenter">
-        <pre class="brush: ruby; gutter: false">
+        <pre class="ruby">
           describe "Rain" do
             context "in the summer"
               it "is refreshing" do
@@ -146,15 +147,15 @@
     <!--
       Things to cover:
 
-      why?
-        readable
-        shiny
-      gems
-        rspec
-        rspec-core
-        rspec-expectations
-        rspec-mocks
-        rspec-rails
+      x why?
+        x readable
+        x shiny
+      x gems
+        x rspec
+        x rspec-core
+        x rspec-expectations
+        x rspec-mocks
+        x rspec-rails
       describe/context/it/specify
         doc output
         implicit description
