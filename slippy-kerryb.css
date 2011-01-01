@@ -87,6 +87,14 @@ p {
   margin:.25em 0;
 }
 
+table.comparison {
+  width: 100%;
+}
+
+table.comparison td.side {
+  width: 45%;
+}
+
 .console {
   font: bold 2em Menlo, "Courier New", Courier, fixed, sans-serif;
   font-size: 1.5em;

@@ -28,7 +28,8 @@
     <script type="text/javascript">
       $(function() {
           $(".slide").slippy({
-            });
+            ratio: 1.6
+          });
           SyntaxHighlighter.all();
           });
     </script>
@@ -47,28 +48,41 @@
 
     <div class="slide">
       <h1>Why RSpec?</h1>
-      <h2>Clear and readable</h2>
-        <pre class="brush: ruby; gutter: false">
-          describe Stack do
-            subject { Stack.new }
+      <h2>Clear, concise and readable</h2>
+      <table class="comparison"><tr>
+        <td class="side">
+          <pre class="brush: ruby; gutter: false">
+            class StackTest < Test::Unit
+              def setup
+                @stack = Stack.new
+              end
 
-            context "on creation" do
-              it { is_empty }
-            end
-          end
-        </pre>
-        <p>vs</p>
-        <pre class="brush: ruby; gutter: false">
-          class StackTest < Test::Unit
-            def setup
-              @stack = Stack.new
-            end
+              def test_new_is_empty
+                assert_equal true, @stack.empty?
+              end
 
-            def test_is_empty_on_creation
-              assert_equal true, @stack.empty?
+              def test_new_has_size_0
+                assert_equal 0, @stack.size
+              end
             end
-          end
-        </pre>
+          </pre>
+        </td>
+        <td>
+          <p>vs</p>
+        </td>
+        <td class="side">
+          <pre class="brush: ruby; gutter: false">
+            describe Stack do
+              context "when new" do
+                subject { Stack.new }
+
+                it { is_empty }
+                it { has(0).items }
+              end
+            end
+          </pre>
+        </td>
+        </tr></table>
     </div>
 
     <div class="slide">
@@ -77,7 +91,8 @@
         <div class="console">
           Stack<br />
           &nbsp;&nbsp;on creation<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">is empty</span><br /><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">is empty</span><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">has 0 items</span><br /><br />
           Finished in 0.01234 seconds<br />
           <span style="color:green">1 example, 0 failures</span>
         </div>
