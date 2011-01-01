@@ -76,12 +76,19 @@ h2 {
   font-size: 1.8em;
 }
 
-li {
-  font-size: 1.2em;
+p, ul, ol {
+  font-family: 'HelveticaNeue-CondensedBlack', 'Helvetica Neue Condensed Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.8em;
 }
 
 p {
   margin:.25em 0;
+}
+
+.console {
+  font: bold 2em Menlo, "Courier New", Courier, fixed, sans-serif;
+  font-size: 1.5em;
 }
 
 ol, ul {
@@ -91,6 +98,11 @@ ol, ul {
 
 ol {
   list-style-type: decimal;
+}
+
+li {
+  margin-top: 0.5em;
+  font-size: 1.2em;
 }
 
 /** References links */

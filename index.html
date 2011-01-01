@@ -42,11 +42,57 @@
     </div>
 
     <div class="slide">
+      <div class="vcenter">
+        <h1>Why RSpec?</h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Clear and readable</h1>
+      <div class="vcenter">
+        <pre class="brush: ruby; gutter: false">
+          describe Stack do
+            subject { Stack.new }
+
+            context "on creation" do
+              it { is_empty }
+            end
+          end
+        </pre>
+        <p>vs</p>
+        <pre class="brush: ruby; gutter: false">
+          class StackTest < Test::Unit
+            def setup
+              @stack = Stack.new
+            end
+
+            def test_is_empty_on_creation
+              assert_equal true, @stack.empty?
+            end
+          end
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Documentation</h1>
+      <div class="vcenter">
+        <div class="console">
+          Stack<br />
+          &nbsp;&nbsp;on creation<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green">is empty</span><br /><br />
+          Finished in 0.01234 seconds<br />
+          <span style="color:green">1 example, 0 failures</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
       <h1>Basics</h1>
       <div class="vcenter">
         <pre class="brush: ruby; gutter: false">
-          describe "something" do
-            it "does something" do
+          describe "Rain" do
+            it "is wet" do
               ...
             end
           end
@@ -55,18 +101,18 @@
     </div>
 
     <div class="slide">
-      <h1>Basics</h1>
+      <h1>Contexts</h1>
       <div class="vcenter">
         <pre class="brush: ruby; gutter: false">
-          describe "something" do
-            context "during working hours"
-              it "does something" do
+          describe "Rain" do
+            context "in the summer"
+              it "is refreshing" do
                 ...
               end
             end
 
-            context "outside working hours"
-              it "does something" do
+            context "in the winter"
+              it "is unpleasant" do
                 ...
               end
             end
@@ -140,6 +186,8 @@
         spec/support
         model/controller/view/helper specs
         adding methods to controller etc
+        migrating from test/unit
+          http://blog.davidchelimsky.net/2009/2/2/rspec-works-with-test-unit/
       cucumber
 
     -->
