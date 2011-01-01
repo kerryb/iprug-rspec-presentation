@@ -109,11 +109,6 @@ p {
   right: 0;
 }
 
-.console {
-  font: bold 2em Menlo, "Courier New", Courier, fixed, sans-serif;
-  font-size: 1.5em;
-}
-
 ol, ul {
   list-style: disc outside none;
   margin-left: 2em;
