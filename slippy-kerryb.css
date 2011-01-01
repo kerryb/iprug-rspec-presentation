@@ -87,12 +87,24 @@ p {
   margin:.25em 0;
 }
 
-table.comparison {
+.comparison {
   width: 100%;
 }
 
-table.comparison td.side {
-  width: 45%;
+.comparison .left {
+  position: absolute;
+  left: 0;
+}
+
+.comparison .middle {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.comparison .right {
+  position: absolute;
+  right: 0;
 }
 
 .console {

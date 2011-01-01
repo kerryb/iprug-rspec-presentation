@@ -28,7 +28,6 @@
     <script type="text/javascript">
       $(function() {
           $(".slide").slippy({
-            ratio: 1.6
           });
           SyntaxHighlighter.all();
           });
@@ -49,8 +48,8 @@
     <div class="slide">
       <h1>Why RSpec?</h1>
       <h2>Clear, concise and readable</h2>
-      <table class="comparison"><tr>
-        <td class="side">
+      <div class="comparison">
+        <div class="left">
           <pre class="brush: ruby; gutter: false">
             class StackTest < Test::Unit
               def setup
@@ -66,11 +65,11 @@
               end
             end
           </pre>
-        </td>
-        <td>
+        </div>
+        <div class="middle">
           <p>vs</p>
-        </td>
-        <td class="side">
+        </div>
+        <div class="right">
           <pre class="brush: ruby; gutter: false">
             describe Stack do
               context "when new" do
@@ -81,8 +80,8 @@
               end
             end
           </pre>
-        </td>
-        </tr></table>
+        </div>
+      </div>
     </div>
 
     <div class="slide">
