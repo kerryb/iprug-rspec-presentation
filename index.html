@@ -100,13 +100,27 @@
 
     <div class="slide">
       <h1>Gems</h1>
-      <ul>
-        <li>rspec</li>
-        <li>rspec-core</li>
-        <li>rspec-expectations</li>
-        <li>rspec-mocks</li>
-        <li>rspec-rails</li>
-      </ul>
+      <div class="vcenter">
+        <ul>
+          <li>rspec</li>
+          <li>rspec-core</li>
+          <li>rspec-expectations</li>
+          <li>rspec-mocks</li>
+          <li>rspec-rails</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Running</h1>
+      <div class="vcenter">
+        <ul>
+          <li>[bundle exec] rspec</li>
+          <li>rake</li>
+          <li>autotest</li>
+          <li>spork</li>
+        </ul>
+      </div>
     </div>
 
     <div class="slide">
@@ -127,18 +141,43 @@
       <div class="vcenter">
         <pre class="ruby">
           describe "Rain" do
-            context "in the summer"
+            context "in the summer" do
               it "is refreshing" do
                 ...
               end
             end
 
-            context "in the winter"
+            context "in the winter" do
               it "is unpleasant" do
                 ...
               end
             end
           end
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Describing methods</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe MyClass do
+            describe ".class_method" do
+              ...
+            end
+
+            describe "#instance_method" do
+              ...
+            end
+          end
+        </pre>
+        <p>Documentation output:</p>
+        <br />
+        <pre>
+          Myclass.class_method
+            ...
+          Myclass#instance_method
+            ...
         </pre>
       </div>
     </div>
