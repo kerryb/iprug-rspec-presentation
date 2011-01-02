@@ -265,6 +265,31 @@
         <pre>
           rspec --tag focus ...
         </pre>
+        <p>Run specs <em>not</em> tagged 'current':</p>
+        <pre>
+          rspec --tag ~focus ...
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Tags with values</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Something" do
+            it "behaves one way in Ruby 1.8", :ruby => "1.8" do
+              ...
+            end
+
+            it "behaves another way in Ruby 1.9", :ruby => "1.9" do
+              ...
+            end
+          end
+        </pre>
+        <p>Run 1.8 specs:</p>
+        <pre>
+          rspec --tag ruby:1.8
+        </pre>
       </div>
     </div>
 
