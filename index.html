@@ -310,6 +310,33 @@
       </div>
     </div>
 
+    <div class="slide">
+      <h1>Filtering by name</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Something" do
+            it "does stuff" do ...
+
+            it "does other stuff" do ...
+
+            it "does one more thing" do ...
+          end
+        </pre>
+        <p>Select specs using a regular expression:</p>
+        <pre>
+          $ rspec -e stuff ...
+          Run filtered using {:full_description=>/(?-mix:stuff)/}
+
+          Something
+            <span style="color:green">does stuff</span>
+            <span style="color:green">does other stuff</span>
+
+          Finished in 0.00101 seconds
+          <span style="color:green">2 examples, 0 failures</span>
+        </pre>
+      </div>
+    </div>
+
     <!--
       Things to cover:
 
