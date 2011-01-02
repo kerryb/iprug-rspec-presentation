@@ -224,6 +224,37 @@
     </div>
 
     <div class="slide">
+      <h1>Pending specs</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Something" do
+            it "does stuff" do
+              ...
+            end
+
+            it "does other stuff" do
+              ...
+            end
+
+            it "does something I haven't implemented yet"
+          end
+        </pre>
+        <pre>
+          $ rspec spec/something_spec.rb
+          <span style="color:green">..</span><span style="color:#aa0">*</span>
+
+          Pending:
+            <span style="color:#aa0">Something does something I haven't implemented yet</span>
+              <span style="color:grey"># Not Yet Implemented</span>
+              <span style="color:grey"># ./spec/something_spec.rb:8</span>
+
+          Finished in 0.00052 seconds
+          <span style="color:#aa0">3 examples, 0 failures, 1 pending</span>
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
       <h1>Describing methods</h1>
       <div class="vcenter">
         <pre class="ruby">
@@ -324,8 +355,8 @@
         </pre>
         <p>Select specs using a regular expression:</p>
         <pre>
-          $ rspec -e stuff ...
-          Run filtered using {:full_description=>/(?-mix:stuff)/}
+          $ rspec -e stuff spec/something_spec.rb
+          Run filtered using {:full_description=&gt;/(?-mix:stuff)/}
 
           Something
             <span style="color:green">does stuff</span>
@@ -338,28 +369,8 @@
     </div>
 
     <!--
-      Things to cover:
+      Things still to cover:
 
-      x describe/context/it/specify
-        x doc output
-        implicit description
-        x method convention
-        pending
-      running
-        http://relishapp.com/rspec/rspec-core
-        x rspec
-        x formatters
-          x progress
-          x documentation
-          x html
-          x fuubar
-        x rake
-        x autotest
-        x spork
-        x .rspec
-        x filters/tags
-          if/unless
-        run by name (-e)
       hooks
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
