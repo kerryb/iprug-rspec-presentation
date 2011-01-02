@@ -125,6 +125,71 @@
     </div>
 
     <div class="slide">
+      <h1>Formatters</h1>
+      <h2>progress (default)</h2>
+      <div class="vcenter">
+        <pre>
+          $ rspec --colour spec/
+          <span style="color:green">..</span>
+
+          Finished in 0.00089 seconds
+          <span style="color:green">2 examples, 0 failures</span>
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Formatters</h1>
+      <h2>Digression: configuration file</h2>
+      <div class="vcenter">
+      <p>We don't want to have to type <code>--colour</code> every time we run rspec.</p>
+      <p>Common options can go in a <code>.rspec</code> file in the project root.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Formatters</h1>
+      <h2>documentation</h2>
+      <div class="vcenter">
+        <pre>
+          $ rspec -f doc spec/
+
+          Stack
+            when new
+              <span style="color:green">should be empty</span>
+              <span style="color:green">should have 0 items</span>
+
+          Finished in 0.00089 seconds
+          <span style="color:green">2 examples, 0 failures</span>
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Formatters</h1>
+      <h2>html</h2>
+      <img src="images/html_output.png" alt="HTML output" />
+    </div>
+
+    <div class="slide">
+      <h1>Formatters</h1>
+      <h2>Fuubar</h2>
+      <div class="vcenter">
+        <p>Fuubar is an external formatter (<code>gem in fuubar</code>).</p>
+        <pre>
+          $ rspec -f Fuubar spec/
+
+            1) Stack after pushing 1 item
+               <span style="color:red">Failure/Error: it { should have(1).item }</span>
+               <span style="color:red">Expected 1 item, got 0</span>
+               <span style="color:grey"># ./spec/stack_spec.rb:12</span>
+
+            <span style="color:red">8/10:      80% |================================    | ETA:  00:00:02</span>
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
       <h1>Basics</h1>
       <div class="vcenter">
         <pre class="ruby">
@@ -173,7 +238,6 @@
           end
         </pre>
         <p>Documentation output:</p>
-        <br />
         <pre>
           Myclass.class_method
             ...
