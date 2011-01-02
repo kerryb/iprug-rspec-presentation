@@ -77,6 +77,10 @@ h2 {
   font-size: 2.5em;
 }
 
+pre {
+  font-family: Menlo, "Courier New", Courier, fixed, sans-serif;
+}
+
 p, ul, ol {
   font-family: 'HelveticaNeue-CondensedBlack', 'Helvetica Neue Condensed Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;

@@ -113,6 +113,40 @@
     </div>
 
     <div class="slide">
+      <h1>Basics</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Rain" do
+            it "is wet" do
+              ...
+            end
+          end
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Contexts</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Rain" do
+            context "in the summer" do
+              it "is refreshing" do
+                ...
+              end
+            end
+
+            context "in the winter" do
+              it "is unpleasant" do
+                ...
+              end
+            end
+          end
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
       <h1>Running</h1>
       <div class="vcenter">
         <ul>
@@ -142,8 +176,8 @@
       <h1>Formatters</h1>
       <h2>Digression: configuration file</h2>
       <div class="vcenter">
-      <p>We don't want to have to type <code>--colour</code> every time we run rspec.</p>
-      <p>Common options can go in a <code>.rspec</code> file in the project root.</p>
+        <p>We don't want to have to type <code>--colour</code> every time we run rspec.</p>
+        <p>Common options can go in a <code>.rspec</code> file in the project root.</p>
       </div>
     </div>
 
@@ -190,40 +224,6 @@
     </div>
 
     <div class="slide">
-      <h1>Basics</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          describe "Rain" do
-            it "is wet" do
-              ...
-            end
-          end
-        </pre>
-      </div>
-    </div>
-
-    <div class="slide">
-      <h1>Contexts</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          describe "Rain" do
-            context "in the summer" do
-              it "is refreshing" do
-                ...
-              end
-            end
-
-            context "in the winter" do
-              it "is unpleasant" do
-                ...
-              end
-            end
-          end
-        </pre>
-      </div>
-    </div>
-
-    <div class="slide">
       <h1>Describing methods</h1>
       <div class="vcenter">
         <pre class="ruby">
@@ -247,6 +247,27 @@
       </div>
     </div>
 
+    <div class="slide">
+      <h1>Tags</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Something" do
+            it "does stuff" do
+              ...
+            end
+
+            it "does the thing I'm working on", :current =&gt; true do
+              ...
+            end
+          end
+        </pre>
+        <p>Run only specs tagged 'current':</p>
+        <pre>
+          rspec --tag focus ...
+        </pre>
+      </div>
+    </div>
+
     <!--
       Things to cover:
 
@@ -258,16 +279,16 @@
       running
         http://relishapp.com/rspec/rspec-core
         x rspec
-        formatters
-          progress
-          documentation
-          html
-          fuubar
+        x formatters
+          x progress
+          x documentation
+          x html
+          x fuubar
         x rake
         x autotest
         x spork
-        .rspec
-        filters/tags
+        x .rspec
+        x filters/tags
           if/unless
         run by name (-e)
       hooks
