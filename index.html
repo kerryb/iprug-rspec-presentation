@@ -74,8 +74,8 @@
           <pre class="ruby">
             describe Stack do
               context "when new" do
-                it { is_empty }
-                it { has(0).items }
+                it { should be_empty }
+                it { should have(0).items }
               end
             end
           </pre>
@@ -90,10 +90,10 @@
         <pre>
           Stack
             when new
-              <span style="color:green">is empty</span>
-              <span style="color:green">has 0 items</span>
+              <span style="color:green">should be empty</span>
+              <span style="color:green">should have 0 items</span>
 
-          Finished in 0.01234 seconds
+          Finished in 0.00089 seconds
           <span style="color:green">2 examples, 0 failures</span>
         </pre>
       </div>
