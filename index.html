@@ -154,6 +154,30 @@
     </div>
 
     <div class="slide">
+      <h1>Describing methods</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe MyClass do
+            describe ".class_method" do
+              ...
+            end
+
+            describe "#instance_method" do
+              ...
+            end
+          end
+        </pre>
+        <p>Documentation output:</p>
+        <pre>
+          Myclass.class_method
+            ...
+          Myclass#instance_method
+            ...
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
       <h1>Running</h1>
       <div class="vcenter">
         <ul>
@@ -183,8 +207,8 @@
       <h1>Formatters</h1>
       <h2>Digression: configuration file</h2>
       <div class="vcenter">
-        <p>We don't want to have to type <code>--colour</code> every time we run rspec.</p>
-        <p>Common options can go in a <code>.rspec</code> file in the project root.</p>
+        <p>We don't want to have to type <code>--colour</code> every time!</p>
+        <p>Put common options in <code>.rspec</code> in the project root.</p>
       </div>
     </div>
 
@@ -246,6 +270,7 @@
             it "does something I haven't implemented yet"
           end
         </pre>
+        <hr />
         <pre>
           $ rspec spec/something_spec.rb
           <span style="color:green">..</span><span style="color:#aa0">*</span>
@@ -262,28 +287,31 @@
     </div>
 
     <div class="slide">
-      <h1>Describing methods</h1>
+      <h1>Running one spec</h1>
       <div class="vcenter">
         <pre class="ruby">
-          describe MyClass do
-            describe ".class_method" do
-              ...
-            end
+          describe "Something" do
+            it "does stuff" do ...
 
-            describe "#instance_method" do
-              ...
-            end
+            it "does other stuff" do ...
+
+            it "does one more thing" do ...
           end
         </pre>
-        <p>Documentation output:</p>
+        <hr />
         <pre>
-          Myclass.class_method
-            ...
-          Myclass#instance_method
-            ...
+          $ rspec -f doc spec/something_spec.rb:5
+          Run filtered using {:line_number=>5}
+
+          Something
+            <span style="color:green">does other stuff</span>
+
+          Finished in 0.00036 seconds
+          <span style="color:green">1 example, 0 failures</span>
         </pre>
       </div>
     </div>
+
 
     <div class="slide">
       <h1>Filtering by tag</h1>
@@ -375,10 +403,34 @@
       </div>
     </div>
 
+    <div class="slide">
+      <h1>Setup and teardown</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          describe "Something" do
+            before :all do
+              # per-context setup
+            end
+
+            before do
+              # per-example setup
+            end
+
+            after do
+              # per-example teardown
+            end
+
+            after :all do
+              # per-context teardown
+            end
+          end
+        </pre>
+      </div>
+    </div>
+
     <!--
       Things still to cover:
 
-      hooks
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
         built-in
@@ -391,13 +443,12 @@
         exceptions
           lambda
           expect...to
-      before/after
-      let
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks
         stub/should_receive
         stub_chain
         other frameworks
+      let
       context
         explicit
         implicit
