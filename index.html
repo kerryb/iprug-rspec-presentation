@@ -148,27 +148,25 @@
 
     <div class="slide">
       <h1>Describing methods</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          describe MyClass do
-            describe ".class_method" do
-              ...
-            end
-
-            describe "#instance_method" do
-              ...
-            end
+      <pre class="ruby">
+        describe MyClass do
+          describe ".class_method" do
+            ...
           end
-        </pre>
-        <hr />
-        <p>Documentation output:</p>
-        <pre>
-          Myclass.class_method
+
+          describe "#instance_method" do
             ...
-          Myclass#instance_method
-            ...
-        </pre>
-      </div>
+          end
+        end
+      </pre>
+      <hr />
+      <p>Documentation output:</p>
+      <pre>
+        Myclass.class_method
+          ...
+        Myclass#instance_method
+          ...
+      </pre>
     </div>
 
     <div class="slide">
@@ -250,34 +248,89 @@
 
     <div class="slide">
       <h1>Pending specs</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          describe "Something" do
-            it "does stuff" do
-              ...
-            end
-
-            it "does other stuff" do
-              ...
-            end
-
-            it "does something I haven't implemented yet"
+      <pre class="ruby">
+        describe "Something" do
+          it "does something" do
+            ...
           end
-        </pre>
-        <hr />
-        <pre>
-          $ rspec spec/something_spec.rb
-          <span style="color:green">..</span><span style="color:#aa0">*</span>
 
-          Pending:
-            <span style="color:#aa0">Something does something I haven't implemented yet</span>
-              <span style="color:grey"># Not Yet Implemented</span>
-              <span style="color:grey"># ./spec/something_spec.rb:8</span>
+          it "does something I haven't implemented yet"
+        end
+      </pre>
+      <hr />
+      <pre>
+        Something
+          ...
+          <span style="color:#aa0">does something I haven't implemented yet (PENDING: Not Yet Implemented)</span>
 
-          Finished in 0.00052 seconds
-          <span style="color:#aa0">3 examples, 0 failures, 1 pending</span>
-        </pre>
-      </div>
+        Pending:
+          <span style="color:#aa0">Something does something I haven't implemented yet</span>
+            <span style="color:grey"># Not Yet Implemented</span>
+            <span style="color:grey"># ./spec/something_spec.rb:5</span>
+
+        Finished in 0.00052 seconds
+        <span style="color:#aa0">2 examples, 0 failures, 1 pending</span>
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Pending specs</h1>
+      <pre class="ruby">
+        describe "Something" do
+          ...
+
+          it "does something I haven't implemented yet" do
+            pending "waiting for inspiration"
+            ...
+          end
+        end
+      </pre>
+      <hr />
+      <pre>
+        Something
+          ...
+          <span style="color:#aa0">does something I haven't implemented yet (PENDING: waiting for inspiration)</span>
+
+        Pending:
+          <span style="color:#aa0">Something does something I haven't implemented yet</span>
+            <span style="color:grey"># waiting for inspiration</span>
+            <span style="color:grey"># ./spec/something_spec.rb:5</span>
+
+        Finished in 0.00078 seconds
+        <span style="color:#aa0">2 examples, 0 failures, 1 pending</span>
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Pending specs</h1>
+      <pre class="ruby">
+        describe "Something" do
+          before { pending "Coming soon!" }
+
+          it "does something" do
+          end
+
+          it "does something else" do
+          end
+        end
+      </pre>
+      <hr />
+      <pre>
+        Something
+          <span style="color:#aa0">does something (PENDING: Coming soon!)</span>
+          <span style="color:#aa0">does something else (PENDING: Coming soon!)</span>
+
+        Pending:
+          <span style="color:#aa0">Something does something</span>
+            <span style="color:grey"># Coming soon!</span>
+            <span style="color:grey"># ./spec/something_spec.rb:4</span>
+          <span style="color:#aa0">Something does something else</span>
+            <span style="color:grey"># Coming soon!</span>
+            <span style="color:grey"># ./spec/something_spec.rb:7</span>
+
+        Finished in 0.0114 seconds
+        <span style="color:#aa0">2 examples, 0 failures, 2 pending</span>
+      </pre>
     </div>
 
     <div class="slide">
@@ -374,30 +427,28 @@
 
     <div class="slide">
       <h1>Filtering by name</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          describe "Something" do
-            it "does stuff" do ...
+      <pre class="ruby">
+        describe "Something" do
+          it "does stuff" do ...
 
-            it "does other stuff" do ...
+          it "does other stuff" do ...
 
-            it "does one more thing" do ...
-          end
-        </pre>
-        <hr />
-        <p>Select specs using a regular expression:</p>
-        <pre>
-          $ rspec -e stuff spec/something_spec.rb
-          Run filtered using {:full_description=&gt;/(?-mix:stuff)/}
+          it "does one more thing" do ...
+        end
+      </pre>
+      <hr />
+      <p>Select specs using a regular expression:</p>
+      <pre>
+        $ rspec -e stuff spec/something_spec.rb
+        Run filtered using {:full_description=&gt;/(?-mix:stuff)/}
 
-          Something
-            <span style="color:green">does stuff</span>
-            <span style="color:green">does other stuff</span>
+        Something
+          <span style="color:green">does stuff</span>
+          <span style="color:green">does other stuff</span>
 
-          Finished in 0.00101 seconds
-          <span style="color:green">2 examples, 0 failures</span>
-        </pre>
-      </div>
+        Finished in 0.00101 seconds
+        <span style="color:green">2 examples, 0 failures</span>
+      </pre>
     </div>
 
     <div class="slide">
