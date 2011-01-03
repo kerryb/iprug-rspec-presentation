@@ -261,6 +261,23 @@
     </div>
 
     <div class="slide">
+      <h1>Profiling</h1>
+      <pre>
+        $ rspec --profile spec/
+          <span style="color:green">55/55:       100% |====================================| Time: 00:00:00</span>
+
+        Top 10 slowest examples:
+          RedRock server allows the port to be overridden
+            <span style="color:red">0.10258</span> seconds ./spec/redrock_spec.rb:107
+          RedRock supports specification of a response body as an IO object
+            <span style="color:red">0.08752</span> seconds ./spec/redrock_spec.rb:336
+          RedRock returning a custom response returns the specified headers
+            <span style="color:red">0.07319</span> seconds ./spec/redrock_spec.rb:331
+          ...
+      </pre>
+    </div>
+
+    <div class="slide">
       <h1>Pending specs</h1>
       <pre class="ruby">
         describe "Something" do
@@ -865,6 +882,42 @@
       </pre>
     </div>
 
+    <div class="slide">
+      <h1>Custom matchers</h1>
+      <p>You can override the description and failure messages:</p>
+      <pre class="ruby">
+        RSpec::Matchers.define :be_a_multiple_of do |expected|
+          match do |actual|
+            actual % expected == 0
+          end
+
+          failure_message_for_should do |actual|
+            "expected that #{actual} would be a multiple of #{expected}"
+          end
+
+          failure_message_for_should_not do |actual|
+            "expected that #{actual} would not be a multiple of #{expected}"
+          end
+
+          description do
+            "be multiple of #{expected}"
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Custom matchers</h1>
+      <p>Not all matchers take an argument:</p>
+      <pre class="ruby">
+        RSpec::Matchers.define :be_a_multiple_of_3 do
+          match do |number|
+            number % 3 == 0
+          end
+        end
+      </pre>
+    </div>
+
     <!--
       Things still to cover:
 
@@ -872,9 +925,6 @@
         http://relishapp.com/rspec/rspec-expectations
         test/unit
         shoulda
-        custom
-          x simple
-          full
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks
         stub/should_receive
