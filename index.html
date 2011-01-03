@@ -197,8 +197,8 @@
     </div>
 
     <div class="slide">
-      <h1>Formatters</h1>
-      <h2>Digression: configuration file</h2>
+      <h1>A digression</h1>
+      <h2>Configuration file</h2>
       <div class="vcenter">
         <p>We don't want to have to type <code>--colour</code> every time!</p>
         <p>Put common options in <code>.rspec</code> in the project root.</p>
@@ -594,6 +594,50 @@
           "This is a string".should =~ /^This/
           "This is a string".should match(/^This/)
         </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Another digression</h1>
+      <h2>Failure messages</h2>
+      <div class="vcenter">
+      <p>The default messages are usually pretty good:</p>
+        <pre class="ruby">
+          (2 + 2).should == 5
+          [1, 2, 3].should =~ [4, 3, 2]
+        </pre>
+        <hr />
+        <pre>
+          <span style="color:red">Failure/Error: (2 + 2).should == 5
+            expected: 5
+                 got: 4 (using ==)
+
+          Failure/Error: [1, 2, 3].should =~ [4, 3, 2]
+            expected collection contained:  [2, 3, 4]
+            actual collection contained:    [1, 2, 3]
+            the missing elements were:      [4]
+            the extra elements were:        [1]</span>
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Another digression</h1>
+      <h2>Failure messages</h2>
+      <div class="vcenter">
+      <p>But you can use a custom message if you like:</p>
+        <pre class="ruby">
+          it "includes 3" do
+            [1, 2, 3].should include(3), "Oh noes! No three!"
+          end
+        </pre>
+        <hr />
+        <pre>
+          1) Something includes 3
+             <span style="color:red">Failure/Error: [1, 2, 4].should include(3), "Oh noes! No three!"
+               Oh noes! No three!</span>
+        </pre>
+        <p>NB. This doesn't work with operator matchers (<code>==</code> etc).</p>
       </div>
     </div>
 
