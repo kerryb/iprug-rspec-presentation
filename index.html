@@ -1056,14 +1056,189 @@
       </pre>
     </div>
 
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Simple stub</h2>
+      <p>A <em>double</em> is the generic term for mocks and stubs.</p>
+      <pre class="ruby">
+        foo = double :foo, :size =&gt; 3, :to_s =&gt; "Foo"
+                   # ^^^^ foo is just a label
+        foo.size
+          # =&gt; 3
+        foo.to_s
+          # =&gt; "Foo"
+        foo.upcase
+          #  =&gt; RSpec::Mocks::MockExpectationError: Double "foo"
+          #     received unexpected message :upcase with (no args)
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Stubbing methods</h2>
+      <p>You can stub methods on doubles, or real objects or classes</p>
+      <pre class="ruby">
+        obj.stub(:valid?).and_return true
+
+        User.stub(:find).with(user_id).and_return user
+      </pre>
+      <p>Dynamic return value with a block:</p>
+      <pre class="ruby">
+        obj.stub(:+) do |arg|
+          obj + arg
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Stubbing methods</h2>
+      <p>Successive calls can return different values:</p>
+      <pre class="ruby">
+        foo.stub(:bar).and_return 1, 2, 3
+
+        foo.bar
+          # =&gt; 1
+        foo.bar
+          # =&gt; 2
+        foo.bar
+          # =&gt; 3
+        foo.bar
+          # =&gt; 3
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Null object</h2>
+      <p>If you want your double to respond to any message:</p>
+      <pre class="ruby">
+        foo = double(:foo, :size =&gt; 3).as_null_object
+
+        foo.upcase
+          # => foo (returns self for unstubbed methods)
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Stubbing a method chain</h2>
+      <p>Often indicates law of demeter violations, but is useful for cases like named scopes, eg:</p>
+      <pre class="ruby">
+        Article.recent.published
+      </pre>
+      <p>You could use multiple doubles:</p>
+      <pre class="ruby">
+        Article.stub(:recent).and_return double(:published =&gt; articles)
+      </pre>
+      <p>But it&rsquo;s easier to stub the whole chain at once:</p>
+      <pre class="ruby">
+        Article.stub_chain(:recent, :published).and_return articles
+
+        Article.stub_chain("recent.published").and_return articles
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Expecting method calls</h2>
+      <pre class="ruby">
+        describe "Form" do
+          let (:model) { double :model }
+          let (:form) { Form.new model }
+
+          context "when submitted" do
+            it "saves the model" do
+              model.should_receive(:save)
+              form.submit
+            end
+          end
+        end
+      </pre>
+      <hr />
+      <pre>
+        Failures:
+
+          1) Form when submitted saves the model
+             <span style="color:red">Failure/Error: model.should_receive(:save)
+               (Double :model).save(any args)
+                   expected: 1 time
+                   received: 0 times</span>
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Expecting calls with arguments</h2>
+      <pre class="ruby">
+        describe "Form" do
+          let (:logger) { double :logger }
+          let (:form) { Form.new logger }
+
+          context "when submitted" do
+            it "logs the event" do
+              logger.should_receive(:info).with "Form submitted"
+              form.submit
+            end
+          end
+        end
+      </pre>
+      <hr />
+      <pre>
+        Failures:
+
+          1) Form when submitted logs the event
+             <span style="color:red">Failure/Error: @logger.info "Form was submitted"
+               Double :logger received :info with unexpected arguments
+                 expected: ("Form submitted")
+                      got: ("Form was submitted")</span>
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>More mockery</h2>
+      <p>You can specify call counts:</p>
+      <pre class="ruby">
+        foo.should_receive(:bar).once
+        foo.should_receive(:bar).at_least(3).times
+      </pre>
+      <p>Arguments can be less strict:</p>
+      <pre class="ruby">
+        foo.should_receive(:bar).with(anything(), an_instance_of(String))
+        foo.should_receive(:bar).with(hash_including(:a =&gt; 1))
+        foo.should_receive(:bar).with(/^[a-z]*$/)
+      </pre>
+      <p>Mock methods can return values just like stubs:</p>
+      <pre class="ruby">
+        foo.should_receive(:bar).and_return "baz"
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Method order</h2>
+      <p>Occasionally you need methods to be called in the right order:</p>
+      <pre class="ruby">
+        it "logs the event" do
+          logger.should_receive(:info).with(form.id).ordered
+          logger.should_receive(:info).with("Form submitted").ordered
+          form.submit
+        end
+      </pre>
+      <hr />
+      <pre>
+        Failures:
+
+          1) Form when submitted logs the event
+             <span style="color:red">Failure/Error: @logger.info "Form submitted"
+               Double :logger received :info out of order</span>
+      </pre>
+    </div>
+
     <!--
       Things still to cover:
 
-      stubs & mocks
-        http://relishapp.com/rspec/rspec-mocks
-        stub/should_receive
-        stub_chain
-        other frameworks
       rails
         http://relishapp.com/rspec/rspec-rails
         spec_helper
