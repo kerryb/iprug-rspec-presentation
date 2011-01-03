@@ -946,6 +946,70 @@
     </div>
 
     <div class="slide">
+      <h1>Let there be let</h1>
+      <p>These examples have some duplication&hellip;</p>
+      <pre class="ruby">
+        describe BowlingGame do
+          it "scores all gutters with 0" do
+            game = BowlingGame.new
+            20.times { game.roll(0) }
+            game.score.should == 0
+          end
+
+          it "scores all 1s with 20" do
+            game = BowlingGame.new
+            20.times { game.roll(1) }
+            game.score.should == 20
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Let there be let</h1>
+      <p>We could move it into a <code>before</code> block&hellip;</p>
+      <pre class="ruby">
+        describe BowlingGame do
+          before do
+            @game = BowlingGame.new
+          end
+
+          it "scores all gutters with 0" do
+            20.times { @game.roll(0) }
+            @game.score.should == 0
+          end
+
+          it "scores all 1s with 20" do
+            20.times { @game.roll(1) }
+            @game.score.should == 20
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Let there be let</h1>
+      <p>But using <code>let</code> is better.</p>
+      <pre class="ruby">
+        describe BowlingGame do
+          let(:game) { BowlingGame.new }
+
+          it "scores all gutters with 0" do
+            20.times { game.roll(0) }
+            game.score.should == 0
+          end
+
+          it "scores all 1s with 20" do
+            20.times { game.roll(1) }
+            game.score.should == 20
+          end
+        end
+      </pre>
+      <p>Variables assigned by <code>let</code> blocks are evaluated lazily,
+      memoised on first use, and reset between examples.</p>
+    </div>
+
+    <div class="slide">
       <h1>Shared examples</h1>
       <p>Factor out common examples:</p>
       <pre class="ruby">
@@ -995,15 +1059,11 @@
     <!--
       Things still to cover:
 
-      expectations/matchers
-        http://relishapp.com/rspec/rspec-expectations
-        test/unit
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks
         stub/should_receive
         stub_chain
         other frameworks
-      let
       rails
         http://relishapp.com/rspec/rspec-rails
         spec_helper
@@ -1012,8 +1072,6 @@
         adding methods to controller etc
         migrating from test/unit
           http://blog.davidchelimsky.net/2009/2/2/rspec-works-with-test-unit/
-      cucumber
-
     -->
   </body>
 </html>
