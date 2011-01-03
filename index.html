@@ -123,6 +123,7 @@
             end
           end
         </pre>
+        <p><code>specify</code> can also be used in place of <code>it</code>.</p>
       </div>
     </div>
 
@@ -144,6 +145,8 @@
             end
           end
         </pre>
+        <p><code>context</code> is an alias for <code>describe</code>.</p>
+        <p>Use whichever is most appropriate.</p>
       </div>
     </div>
 
@@ -488,19 +491,22 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Expectations</h1>
       <div class="vcenter">
         <p>RSpec adds <code>should</code> and <code>should_not</code> to all objects.</p>
         <pre class="ruby">
           (2 + 2).should == 4
 
           "foo".should_not == "bar"
+
+          value.should be_true
         </pre>
+        <p>The <code>==</code> and <code>be_true</code> are <em>matchers</em>.</p>
       </div>
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Equality</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -516,7 +522,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Floating point</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -526,7 +532,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>True or false</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -540,7 +546,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Operators</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -561,7 +567,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Collections</h2>
       <pre class="ruby">
         # These two are identical:
@@ -584,7 +590,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Strings</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -642,7 +648,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Back to built-in matchers</h1>
       <h2>Predicates</h2>
       <div class="comparison">
         <div class="left">
@@ -674,7 +680,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Classes</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -692,7 +698,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Changing values</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -704,7 +710,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Raising and throwing</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -721,7 +727,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Exist</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -735,7 +741,7 @@
     </div>
 
     <div class="slide">
-      <h1>Matchers</h1>
+      <h1>Built-in matchers</h1>
       <h2>Arbitrary blocks</h2>
       <div class="vcenter">
         <pre class="ruby">
@@ -750,17 +756,41 @@
       </div>
     </div>
 
+    <div class="slide">
+      <h1>Custom matchers</h1>
+      <div class="vcenter">
+        <pre class="ruby">
+          RSpec::Matchers.define :be_a_multiple_of do |expected|
+            match do |actual|
+              actual % expected == 0
+            end
+          end
+
+          describe 10 do
+            it { should be_a_multiple_of(5) }
+          end
+        </pre>
+        <hr />
+        <pre>
+          10
+            <span style="color:green">should be a multiple of 5</span>
+
+          Finished in 0.04768 seconds
+          <span style="color:green">1 example, 0 failures</span>
+        </pre>
+      </div>
+    </div>
+
     <!--
       Things still to cover:
 
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
         implicit docstrings
-        custom messages
         test/unit
         shoulda
         custom
-          simple
+          x simple
           full
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks

@@ -81,6 +81,10 @@ pre {
   font-family: Menlo, "Courier New", Courier, fixed, sans-serif;
 }
 
+code {
+  color: grey;
+}
+
 p, ul, ol {
   font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
