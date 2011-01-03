@@ -927,7 +927,7 @@
         it { should redirect_to(users_path)  }
         it { should render_with_layout(:special) }
         it { should respond_with(:success)  }
-        it { should route(:get, &quot;/posts/new&quot;).to(:action =&gt; :new) }
+        it { should route(:get, "/posts/new").to(:action =&gt; :new) }
         it { should set_the_flash.to(/created/i) }
 
         it { should validate_presence_of(:name) }
@@ -945,20 +945,65 @@
       <p><em><a href="http://robots.thoughtbot.com/post/701863189/shoulda-rails3-and-beyond">Thoughtbot blog</a>, June 2010</em></p>
     </div>
 
+    <div class="slide">
+      <h1>Shared examples</h1>
+      <p>Factor out common examples:</p>
+      <pre class="ruby">
+        shared_examples_for "a single-element array" do
+          it { should_not be_empty }
+          it { should have(1).element }
+        end
+
+        describe ["foo"] do
+          it_behaves_like "a single-element array"
+        end
+
+        describe [42] do
+          it_behaves_like "a single-element array"
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Shared examples</h1>
+      <p>Variables can be set using a block:</p>
+      <pre class="ruby">
+        shared_examples_for "a collection object" do
+          describe "&lt;&lt;" do
+            it "adds objects to the end of the collection" do
+              collection &lt;&lt; 1
+              collection &lt;&lt; 2
+              collection.to_a.should eq([1,2])
+            end
+          end
+        end
+
+        describe Array do
+          it_behaves_like "a collection object" do
+            let(:collection) { Array.new }
+          end
+        end
+
+        describe Set do
+          it_behaves_like "a collection object" do
+            let(:collection) { Set.new }
+          end
+        end
+      </pre>
+    </div>
+
     <!--
       Things still to cover:
 
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
         test/unit
-        shoulda
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks
         stub/should_receive
         stub_chain
         other frameworks
       let
-      shared examples
       rails
         http://relishapp.com/rspec/rspec-rails
         spec_helper
