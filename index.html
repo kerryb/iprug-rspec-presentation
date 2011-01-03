@@ -200,7 +200,7 @@
       <h1>A digression</h1>
       <h2>Configuration file</h2>
       <div class="vcenter">
-        <p>We don't want to have to type <code>--colour</code> every time!</p>
+        <p>We don't want to type <code>--colour</code> every time!</p>
         <p>Put common options in <code>.rspec</code> in the project root.</p>
       </div>
     </div>
@@ -625,7 +625,7 @@
       <h1>Another digression</h1>
       <h2>Failure messages</h2>
       <div class="vcenter">
-      <p>But you can use a custom message if you like:</p>
+      <p>&hellip;but you can use a custom message if you like<sup>*</sup>:</p>
         <pre class="ruby">
           it "includes 3" do
             [1, 2, 3].should include(3), "Oh noes! No three!"
@@ -637,7 +637,7 @@
              <span style="color:red">Failure/Error: [1, 2, 4].should include(3), "Oh noes! No three!"
                Oh noes! No three!</span>
         </pre>
-        <p>NB. This doesn't work with operator matchers (<code>==</code> etc).</p>
+        <p><sup>*</sup>except with operator matchers (<code>==</code> etc).</p>
       </div>
     </div>
 
