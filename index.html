@@ -203,7 +203,7 @@
       <h1>A digression</h1>
       <h2>Configuration file</h2>
       <div class="vcenter">
-        <p>We don't want to type <code>--colour</code> every time!</p>
+        <p>We don&rsquo;t want to type <code>--colour</code> every time!</p>
         <p>Put common options in <code>.rspec</code> in the project root.</p>
       </div>
     </div>
@@ -389,11 +389,11 @@
           end
         </pre>
         <hr />
-        <p>Run only specs tagged 'current':</p>
+        <p>Run only specs tagged &lsquo;current&rsquo;</p>
         <pre>
           rspec --tag focus ...
         </pre>
-        <p>Run specs <em>not</em> tagged 'current':</p>
+        <p>Run specs <em>not</em> tagged &lsquo;current&rsquo;</p>
         <pre>
           rspec --tag ~focus ...
         </pre>
@@ -758,27 +758,111 @@
 
     <div class="slide">
       <h1>Custom matchers</h1>
-      <div class="vcenter">
-        <pre class="ruby">
-          RSpec::Matchers.define :be_a_multiple_of do |expected|
-            match do |actual|
-              actual % expected == 0
-            end
+      <pre class="ruby">
+        RSpec::Matchers.define :be_a_multiple_of do |expected|
+          match do |actual|
+            actual % expected == 0
           end
+        end
 
-          describe 10 do
-            it { should be_a_multiple_of(5) }
+        describe 10 do
+          it { should be_a_multiple_of(5) }
+        end
+      </pre>
+      <hr />
+      <pre>
+        10
+          <span style="color:green">should be a multiple of 5</span>
+
+        Finished in 0.04768 seconds
+        <span style="color:green">1 example, 0 failures</span>
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Hang on a minute&hellip;</h1>
+      <pre class="ruby">
+        RSpec::Matchers.define :be_a_multiple_of do |expected|
+          match do |actual|
+            actual % expected == 0
           end
-        </pre>
-        <hr />
-        <pre>
-          10
-            <span style="color:green">should be a multiple of 5</span>
+        end
 
-          Finished in 0.04768 seconds
-          <span style="color:green">1 example, 0 failures</span>
-        </pre>
-      </div>
+        describe 10 do
+          it { should be_a_multiple_of(5) }
+        end
+      </pre>
+      <hr />
+      <pre>
+        10
+          <span style="color:green">should be a multiple of 5</span>
+
+        Finished in 0.04768 seconds
+        <span style="color:green">1 example, 0 failures</span>
+      </pre>
+      <p>Firstly, note how a description has been automatically generated for us.</p>
+      <p>But what are we calling <code>should</code> on?</p>
+    </div>
+
+    <div class="slide">
+      <h1>Implicit subject</h1>
+      <p>The argument to <code>describe</code> becomes the subject:</p>
+      <pre class="ruby">
+        describe 42 do
+          it { should be_even }
+          it { should_not be_zero }
+        end
+      </pre>
+      <p>If it&rsquo;s a class, the subject is a new instance:</p>
+      <pre class="ruby">
+        describe Array do
+          it { should be_empty }
+          it { should have(0).items }
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Implicit subject</h1>
+      <p>Access attributes of the subject with <code>its</code>:</p>
+      <pre class="ruby">
+        describe [1, 2, 3, 3] do
+          its(:size) { should == 4 }
+          its("uniq.size") { should == 3 }
+        end
+      </pre>
+      <hr />
+      <pre>
+        1233
+          size
+            <span style="color:green">should == 4</span>
+          uniq.size
+            <span style="color:green">should == 3</span>
+
+        Finished in 0.00279 seconds
+        <span style="color:green">2 examples, 0 failures</span>
+      </pre>
+      <p>That description (from <code>to_s</code>) could be better...</p>
+    </div>
+
+    <div class="slide">
+      <h1>Explicit subject</h1>
+      <p>You can set the subject explicitly using a block:</p>
+      <pre class="ruby">
+        describe "An array containing 1, 2, 3, 3" do
+          subject { [1, 2, 3, 3] }
+
+          its(:size) { should == 4 }
+        end
+      </pre>
+      <p>And access it in examples as <code>subject</code>:</p>
+      <pre class="ruby">
+        describe Array do
+          it "is empty" do
+            subject.should be_empty
+          end
+        end
+      </pre>
     </div>
 
     <!--
@@ -786,7 +870,6 @@
 
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
-        implicit docstrings
         test/unit
         shoulda
         custom
@@ -798,12 +881,6 @@
         stub_chain
         other frameworks
       let
-      context
-        explicit
-        implicit
-        it
-        its
-          nested attributes
       shared examples
       rails
         http://relishapp.com/rspec/rspec-rails
