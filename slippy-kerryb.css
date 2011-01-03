@@ -85,6 +85,15 @@ code {
   color: grey;
 }
 
+blockquote {
+  background-color: #ffc;
+  padding: 1em;
+  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 1.6em;
+  line-height: 1.8em;
+}
+
 p, ul, ol {
   font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;

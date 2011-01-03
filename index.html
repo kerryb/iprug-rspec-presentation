@@ -918,6 +918,33 @@
       </pre>
     </div>
 
+    <div class="slide">
+      <h1>Shoulda matchers</h1>
+      <p><a href="https://github.com/thoughtbot/shoulda">Shoulda</a> provides a whole bunch of Rails matchers, including:</p>
+      <pre class="ruby">
+        it { should render_template(:show) }
+        it { should assign_to(:user).with(@user) }
+        it { should redirect_to(users_path)  }
+        it { should render_with_layout(:special) }
+        it { should respond_with(:success)  }
+        it { should route(:get, &quot;/posts/new&quot;).to(:action =&gt; :new) }
+        it { should set_the_flash.to(/created/i) }
+
+        it { should validate_presence_of(:name) }
+        it { should_not allow_mass_assignment_of(:password) }
+        it { should have_one(:profile) }
+        it { should have_db_column(:salary).of_type(:decimal) }
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Speaking of shoulda&hellip;</h1>
+      <blockquote>Shoulda is focusing on the RSpec/Shoulda combination and will
+        primarily support that combination of tools, moving away from
+        Test::Unit.</blockquote>
+      <p><em><a href="http://robots.thoughtbot.com/post/701863189/shoulda-rails3-and-beyond">Thoughtbot blog</a>, June 2010</em></p>
+    </div>
+
     <!--
       Things still to cover:
 
