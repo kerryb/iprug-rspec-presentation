@@ -495,7 +495,213 @@
 
           "foo".should_not == "bar"
         </pre>
-        <p>Of course you can check a lot more than equality&hellip;</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Equality</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          a.should equal(b) # both pass if a.equal? b
+          a.should be(b)    #
+
+          a.should eql(b)   # passes if a.eql? b
+
+          a.should == b     # both pass if a == b
+          a.should eq(b)    #
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Floating point</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          Math::PI.should be_within(0.01).of(22.0/7)
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>True or false</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          obj.should be_true  # passes if obj is truthy (not nil or false)
+          obj.should be_false # passes if obj is falsy (nil or false)
+          obj.should be_nil   # passes if obj is nil
+          obj.should be       # passes if obj is not nil
+        </pre>
+      <p><code>should be</code> is preferred to <code>should_not be_nil</code>.</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Operators</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          7.should == 7
+          [1, 2, 3].should == [1, 2, 3]
+          "this is a string".should =~ /^this/
+          "this is a string".should_not =~ /^that/
+          String.should === "this is a string"
+        </pre>
+        <p>Comparison operators work with the "be" matcher:</p>
+        <pre class="ruby">
+          37.should be < 100
+          37.should be <= 38
+          37.should be >= 2
+          37.should be > 7
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Collections</h2>
+      <pre class="ruby">
+        # These two are identical:
+        [1, 2, 3].should have(3).items
+        [1, 2, 3].should have_exactly(3).items
+
+        [1, 2, 3].should have_at_least(2).items
+        [1, 2, 3].should have_at_most(4).items
+
+        # "items" is just syntactic sugar:
+        [1, 2, 3].should have(3).numbers
+
+        [1, 2, 3].should include(2)
+        [1, 2, 3].should include(1, 2)
+        {:a =&gt; 1, :b =&gt; 2}.should include(:a =&gt; 1)
+
+        [1, 2, 3].should =~ [2, 3, 1]
+        [:a, :c, :b].should_not =~ [:a, :c]
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Strings</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          "This is a string".should include "str"
+
+          # These two are identical:
+          "This is a string".should =~ /^This/
+          "This is a string".should match(/^This/)
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Predicates</h2>
+      <div class="comparison">
+        <div class="left">
+          <pre class="ruby">
+            [].empty?.should be_true
+            42.even?.should be_true
+            123.multiple_of?(5).
+              should be_false
+
+            {:a =&gt; 1, :b =&gt; 2}.has_key?(:a).
+              should be_true
+          </pre>
+        </div>
+        <div class="middle">
+          <p>&#10151;</p>
+        </div>
+        <div class="right">
+          <pre class="ruby">
+            [].should be_empty
+            42.should be_even
+            123.should_not be_multiple_of(5)
+
+
+            {:a =&gt; 1, :b =&gt; 2}.
+              should have_key(:a)
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Classes</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          "foo".should be_an_instance_of(String)     # Exact class
+          "foo".should_not be_an_instance_of(Object) #
+
+          "foo".should be_a_kind_of(Object)          # Match subclasses
+          "foo".should be_an(Object)                 #
+
+          "foo".should respond_to(:upcase)
+          "foo".should respond_to(:upcase, :downcase)
+          "foo".should respond_to(:upcase).with(0).arguments
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Changing values</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          expect{ array &lt;&lt; 42 }.to change{ array.size }.from(0).to(1)
+
+          expect{ array &lt;&lt; 42 }.to change{ array.size }.by(1)
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Raising and throwing</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          expect { 4/2 }.to_not raise_error
+          expect { 4/0 }.to raise_error
+          expect { 4/0 }.to raise_error(ZeroDivisionError)
+          expect { 4/0 }.to raise_error(ZeroDivisionError, "divided by 0")
+
+          expect { throw :foo }.to throw_symbol
+          expect { throw :foo }.to throw_symbol(:foo)
+          expect { throw :foo, 7 }.to throw_symbol(:foo, 7)
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Exist</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          obj.should exist # passes if obj.exist? returns true
+        </pre>
+        <p>This is the only use case I could think of:</p>
+        <pre class="ruby">
+          Pathname("/etc/passwd").should exist
+        </pre>
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Matchers</h1>
+      <h2>Arbitrary blocks</h2>
+      <div class="vcenter">
+        <pre class="ruby">
+          10.should satisfy { |v| v % 5 == 0 }
+        </pre>
+        <p>Not really recommended, because of the unfriendly failure message:</p>
+        <pre>
+          <span style="color:red">Failure/Error: 11.should satisfy { |v| v % 5 == 0 }</span>
+            <span style="color:red">expected 11 to satisfy block</span>
+        </pre>
+        <p>Which brings us to&hellip;</p>
       </div>
     </div>
 
@@ -504,16 +710,13 @@
 
       expectations/matchers
         http://relishapp.com/rspec/rspec-expectations
-        built-in
-          should/should_not
+        implicit docstrings
+        custom messages
         test/unit
         shoulda
         custom
           simple
           full
-        exceptions
-          lambda
-          expect...to
       stubs & mocks
         http://relishapp.com/rspec/rspec-mocks
         stub/should_receive
