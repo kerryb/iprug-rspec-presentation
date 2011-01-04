@@ -1236,17 +1236,155 @@
       </pre>
     </div>
 
-    <!--
-      Things still to cover:
+    <div class="slide">
+      <h1>Mocks and stubs</h1>
+      <h2>Playing in irb</h2>
+      <p>If you want to experiment with mocks and stubs in irb:</p>
+      <pre class="ruby">
+        require "rspec/mocks/standalone"
+      </pre>
+    </div>
 
-      rails
-        http://relishapp.com/rspec/rspec-rails
-        spec_helper
-        spec/support
-        model/controller/view/helper specs
-        adding methods to controller etc
-        migrating from test/unit
-          http://blog.davidchelimsky.net/2009/2/2/rspec-works-with-test-unit/
-    -->
+    <div class="slide">
+      <h1>Rails</h1>
+      <p><code>rspec-rails</code> is a drop-in replacement for Rails&rsquo;s built-in testing.</p>
+      <p>Add it to your <code>Gemfile</code>:</p>
+      <pre class="ruby">
+        group :test, :development do
+          gem "rspec-rails", "~&gt; 2.4"
+        end
+      </pre>
+      <p>Then run:</p>
+      <pre>
+        rails generate rspec:install
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails models</h1>
+      <p>Fake ActiveRecord objects are useful in controller specs:</p>
+      <pre class="ruby">
+        article = mock_model Article, :text =&gt; "Hello world"
+      </pre>
+      <p>Testing errors:</p>
+      <pre class ="ruby">
+        widget.should have(1).error_on(:name)
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails controllers</h1>
+      <h2>View integration</h2>
+      <p>Views are stubbed by default. To render them, use <code>render_views</code>:</p>
+      <pre class="ruby">
+        describe WidgetsController do
+          render_views
+
+          describe "index" do
+            it "renders the index template" do
+              get :index
+              response.should contain("Listing widgets")
+            end
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails controllers</h1>
+      <h2>Anonymous controller</h2>
+      <p>To test behaviour in <code>ApplicationController</code>, you can define
+        actions on the fly in your spec:</p>
+      <pre class="ruby">
+        describe ApplicationController do
+          controller do
+            def index
+              raise ApplicationController::AccessDenied
+            end
+          end
+
+          describe "handling AccessDenied exceptions" do
+            it "redirects to the /401.html page" do
+              get :index
+              response.should redirect_to("/401.html")
+            end
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails helpers</h1>
+      <p>Access helper methods via the <code>helper</code> object:</p>
+      <pre class="ruby">
+        describe ApplicationHelper do
+          describe "#page_title" do
+            it "returns the value of @title" do
+              assign(:title, "My Title")
+              helper.page_title.should eql("My Title")
+            end
+          end
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails helpers</h1>
+      <h2>Accessing other helpers</h2>
+      <p>If the helper under test calls methods in other helpers,
+        you&rsquo;ll need to include them in your spec:</p>
+      <pre class="ruby">
+        describe SomeHelper do
+          helper do
+            include ApplicationHelper
+          end
+
+          ...
+        end
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Rails routing</h1>
+      <pre class="ruby">
+        { :get =&gt; "/" }.should route_to(:controller =&gt; "welcome")
+
+        { :get =&gt; "/widgets" }.should_not be_routable
+
+        {:get =&gt; new_widget_path}.should route_to(
+          :controller =&gt; "widgets", :action =&gt; "new")
+      </pre>
+    </div>
+
+    <div class="slide">
+      <h1>Learning more</h1>
+      <h2><a href="http://www.pragprog.com/titles/achbd/the-rspec-book">The RSpec Book</a></h2>
+      <div class="center">
+        <img src="images/rspec-book.jpg" alt="The RSpec Book" />
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Learning more</h1>
+      <h2><a href="http://relishapp.com/rspec">http://relishapp.com/rspec</a></h2>
+      <div class="center">
+        <img src="images/relish.png" alt="relishapp" />
+      </div>
+    </div>
+
+    <div class="slide">
+      <h1>Learning more</h1>
+      <h2><a href="https://github.com/rspec">https://github.com/rspec</a></h2>
+      <div class="center">
+        <img src="images/github.png" alt="github" />
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="vcenter">
+        <h1>Thank you!</h1>
+        <h2>Any questions?</h2>
+      </div>
+    </div>
   </body>
 </html>
