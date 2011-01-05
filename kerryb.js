@@ -3,5 +3,6 @@
 "use strict";
 
 $(document).ready(function(){
-  $(".ruby").addClass("brush: ruby; gutter: false; toolbar: false");
+  SyntaxHighlighter.defaults["gutter"] = false;
+  SyntaxHighlighter.defaults["toolbar"] = false;
 });

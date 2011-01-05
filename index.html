@@ -50,7 +50,7 @@
       <h2>Clear, concise and readable</h2>
       <div class="comparison">
         <div class="left">
-          <pre class="ruby">
+          <pre class="brush: ruby">
             class StackTest < Test::Unit
               def setup
                 @stack = Stack.new
@@ -72,7 +72,7 @@
           <p>vs</p>
         </div>
         <div class="right">
-          <pre class="ruby">
+          <pre class="brush: ruby">
             describe Stack do
               context "when new" do
                 it { should be_empty }
@@ -116,7 +116,7 @@
     <div class="slide">
       <h1>Basics</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Rain" do
             it "is wet" do
               ...
@@ -130,7 +130,7 @@
     <div class="slide">
       <h1>Contexts</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Rain" do
             context "in the summer" do
               it "is refreshing" do
@@ -152,7 +152,7 @@
 
     <div class="slide">
       <h1>Describing methods</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe MyClass do
           describe ".class_method" do
             ...
@@ -279,7 +279,7 @@
 
     <div class="slide">
       <h1>Pending specs</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Something" do
           it "does something" do
             ...
@@ -306,7 +306,7 @@
 
     <div class="slide">
       <h1>Pending specs</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Something" do
           ...
 
@@ -334,7 +334,7 @@
 
     <div class="slide">
       <h1>Pending specs</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Something" do
           before { pending "Coming soon!" }
 
@@ -367,7 +367,7 @@
     <div class="slide">
       <h1>Running one spec</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Something" do
             it "does stuff" do ...
 
@@ -394,7 +394,7 @@
     <div class="slide">
       <h1>Filtering by tag</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Something" do
             it "does stuff" do
               ...
@@ -420,7 +420,7 @@
     <div class="slide">
       <h1>Filtering by tag value</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Something" do
             it "behaves one way in Ruby 1.8", :ruby => "1.8" do
               ...
@@ -442,7 +442,7 @@
     <div class="slide">
       <h1>Implicit filtering</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Something" do
             it "behaves one way in 1.8", if =&gt; { VERSION =~ /^1.8/ } do
               ...
@@ -458,7 +458,7 @@
 
     <div class="slide">
       <h1>Filtering by name</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Something" do
           it "does stuff" do ...
 
@@ -485,7 +485,7 @@
     <div class="slide">
       <h1>Setup and teardown</h1>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           describe "Something" do
             before :all do
               # per-context setup
@@ -511,7 +511,7 @@
       <h1>Expectations</h1>
       <div class="vcenter">
         <p>RSpec adds <code>should</code> and <code>should_not</code> to all objects.</p>
-        <pre class="ruby">
+        <pre class="brush: ruby">
           (2 + 2).should == 4
 
           "foo".should_not == "bar"
@@ -526,7 +526,7 @@
       <h1>Built-in matchers</h1>
       <h2>Equality</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           a.should equal(b) # both pass if a.equal? b
           a.should be(b)    #
 
@@ -542,7 +542,7 @@
       <h1>Built-in matchers</h1>
       <h2>Floating point</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           Math::PI.should be_within(0.01).of(22.0/7)
         </pre>
       </div>
@@ -552,7 +552,7 @@
       <h1>Built-in matchers</h1>
       <h2>True or false</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           obj.should be_true  # passes if obj is truthy (not nil or false)
           obj.should be_false # passes if obj is falsy (nil or false)
           obj.should be_nil   # passes if obj is nil
@@ -566,7 +566,7 @@
       <h1>Built-in matchers</h1>
       <h2>Operators</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           7.should == 7
           [1, 2, 3].should == [1, 2, 3]
           "this is a string".should =~ /^this/
@@ -574,7 +574,7 @@
           String.should === "this is a string"
         </pre>
         <p>Comparison operators work with the "be" matcher:</p>
-        <pre class="ruby">
+        <pre class="brush: ruby">
           37.should be < 100
           37.should be <= 38
           37.should be >= 2
@@ -586,7 +586,7 @@
     <div class="slide">
       <h1>Built-in matchers</h1>
       <h2>Collections</h2>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         # These two are identical:
         [1, 2, 3].should have(3).items
         [1, 2, 3].should have_exactly(3).items
@@ -610,7 +610,7 @@
       <h1>Built-in matchers</h1>
       <h2>Strings</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           "This is a string".should include "str"
 
           # These two are identical:
@@ -625,7 +625,7 @@
       <h2>Failure messages</h2>
       <div class="vcenter">
       <p>The default messages are usually pretty good:</p>
-        <pre class="ruby">
+        <pre class="brush: ruby">
           (2 + 2).should == 5
           [1, 2, 3].should =~ [4, 3, 2]
         </pre>
@@ -649,7 +649,7 @@
       <h2>Failure messages</h2>
       <div class="vcenter">
       <p>&hellip;but you can use a custom message if you like<sup>*</sup>:</p>
-        <pre class="ruby">
+        <pre class="brush: ruby">
           it "includes 3" do
             [1, 2, 3].should include(3), "Oh noes! No three!"
           end
@@ -669,7 +669,7 @@
       <h2>Predicates</h2>
       <div class="comparison">
         <div class="left">
-          <pre class="ruby">
+          <pre class="brush: ruby">
             [].empty?.should be_true
             42.even?.should be_true
             123.multiple_of?(5).
@@ -683,7 +683,7 @@
           <p>&#10151;</p>
         </div>
         <div class="right">
-          <pre class="ruby">
+          <pre class="brush: ruby">
             [].should be_empty
             42.should be_even
             123.should_not be_multiple_of(5)
@@ -700,7 +700,7 @@
       <h1>Built-in matchers</h1>
       <h2>Classes</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           "foo".should be_an_instance_of(String)     # Exact class
           "foo".should_not be_an_instance_of(Object) #
 
@@ -718,7 +718,7 @@
       <h1>Built-in matchers</h1>
       <h2>Changing values</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           expect{ array &lt;&lt; 42 }.to change{ array.size }.from(0).to(1)
 
           expect{ array &lt;&lt; 42 }.to change{ array.size }.by(1)
@@ -730,7 +730,7 @@
       <h1>Built-in matchers</h1>
       <h2>Raising and throwing</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           expect { 4/2 }.to_not raise_error
           expect { 4/0 }.to raise_error
           expect { 4/0 }.to raise_error(ZeroDivisionError)
@@ -747,11 +747,11 @@
       <h1>Built-in matchers</h1>
       <h2>Exist</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           obj.should exist # passes if obj.exist? returns true
         </pre>
         <p>This is the only use case I could think of:</p>
-        <pre class="ruby">
+        <pre class="brush: ruby">
           Pathname("/etc/passwd").should exist
         </pre>
       </div>
@@ -761,7 +761,7 @@
       <h1>Built-in matchers</h1>
       <h2>Arbitrary blocks</h2>
       <div class="vcenter">
-        <pre class="ruby">
+        <pre class="brush: ruby">
           10.should satisfy { |v| v % 5 == 0 }
         </pre>
         <p>Not really recommended, because of the unfriendly failure message:</p>
@@ -775,7 +775,7 @@
 
     <div class="slide">
       <h1>Custom matchers</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         RSpec::Matchers.define :be_a_multiple_of do |expected|
           match do |actual|
             actual % expected == 0
@@ -798,7 +798,7 @@
 
     <div class="slide">
       <h1>Hang on a minute&hellip;</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         RSpec::Matchers.define :be_a_multiple_of do |expected|
           match do |actual|
             actual % expected == 0
@@ -824,14 +824,14 @@
     <div class="slide">
       <h1>Implicit subject</h1>
       <p>The argument to <code>describe</code> becomes the subject:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe 42 do
           it { should be_even }
           it { should_not be_zero }
         end
       </pre>
       <p>If it&rsquo;s a class, the subject is a new instance:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe Array do
           it { should be_empty }
           it { should have(0).items }
@@ -842,7 +842,7 @@
     <div class="slide">
       <h1>Implicit subject</h1>
       <p>Access attributes of the subject with <code>its</code>:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe [1, 2, 3, 3] do
           its(:size) { should == 4 }
           its("uniq.size") { should == 3 }
@@ -865,7 +865,7 @@
     <div class="slide">
       <h1>Explicit subject</h1>
       <p>You can set the subject explicitly using a block:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "An array containing 1, 2, 3, 3" do
           subject { [1, 2, 3, 3] }
 
@@ -873,7 +873,7 @@
         end
       </pre>
       <p>And access it in examples as <code>subject</code>:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe Array do
           it "is empty" do
             subject.should be_empty
@@ -885,7 +885,7 @@
     <div class="slide">
       <h1>Custom matchers</h1>
       <p>You can override the description and failure messages:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         RSpec::Matchers.define :be_a_multiple_of do |expected|
           match do |actual|
             actual % expected == 0
@@ -909,7 +909,7 @@
     <div class="slide">
       <h1>Custom matchers</h1>
       <p>Not all matchers take an argument:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         RSpec::Matchers.define :be_a_multiple_of_3 do
           match do |number|
             number % 3 == 0
@@ -921,7 +921,7 @@
     <div class="slide">
       <h1>Shoulda matchers</h1>
       <p><a href="https://github.com/thoughtbot/shoulda">Shoulda</a> provides a whole bunch of Rails matchers, including:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         it { should render_template(:show) }
         it { should assign_to(:user).with(@user) }
         it { should redirect_to(users_path)  }
@@ -948,7 +948,7 @@
     <div class="slide">
       <h1>Let there be let</h1>
       <p>These examples have some duplication&hellip;</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe BowlingGame do
           it "scores all gutters with 0" do
             game = BowlingGame.new
@@ -968,7 +968,7 @@
     <div class="slide">
       <h1>Let there be let</h1>
       <p>We could move it into a <code>before</code> block&hellip;</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe BowlingGame do
           before do
             @game = BowlingGame.new
@@ -990,7 +990,7 @@
     <div class="slide">
       <h1>Let there be let</h1>
       <p>But using <code>let</code> is better.</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe BowlingGame do
           let(:game) { BowlingGame.new }
 
@@ -1012,7 +1012,7 @@
     <div class="slide">
       <h1>Shared examples</h1>
       <p>Factor out common examples:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         shared_examples_for "a single-element array" do
           it { should_not be_empty }
           it { should have(1).element }
@@ -1031,7 +1031,7 @@
     <div class="slide">
       <h1>Shared examples</h1>
       <p>Variables can be set using a block:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         shared_examples_for "a collection object" do
           describe "&lt;&lt;" do
             it "adds objects to the end of the collection" do
@@ -1060,7 +1060,7 @@
       <h1>Mocks and stubs</h1>
       <h2>Simple stub</h2>
       <p>A <em>double</em> is the generic term for mocks and stubs.</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo = double :foo, :size =&gt; 3, :to_s =&gt; "Foo"
                    # ^^^^ foo is just a label
         foo.size
@@ -1077,13 +1077,13 @@
       <h1>Mocks and stubs</h1>
       <h2>Stubbing methods</h2>
       <p>You can stub methods on doubles, or real objects or classes</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         obj.stub(:valid?).and_return true
 
         User.stub(:find).with(user_id).and_return user
       </pre>
       <p>Dynamic return value with a block:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         obj.stub(:+) do |arg|
           obj + arg
         end
@@ -1094,7 +1094,7 @@
       <h1>Mocks and stubs</h1>
       <h2>Stubbing methods</h2>
       <p>Successive calls can return different values:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo.stub(:bar).and_return 1, 2, 3
 
         foo.bar
@@ -1112,7 +1112,7 @@
       <h1>Mocks and stubs</h1>
       <h2>Null object</h2>
       <p>If you want your double to respond to any message:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo = double(:foo, :size =&gt; 3).as_null_object
 
         foo.upcase
@@ -1124,15 +1124,15 @@
       <h1>Mocks and stubs</h1>
       <h2>Stubbing a method chain</h2>
       <p>Often indicates law of demeter violations, but is useful for cases like named scopes, eg:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         Article.recent.published
       </pre>
       <p>You could use multiple doubles:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         Article.stub(:recent).and_return double(:published =&gt; articles)
       </pre>
       <p>But it&rsquo;s easier to stub the whole chain at once:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         Article.stub_chain(:recent, :published).and_return articles
 
         Article.stub_chain("recent.published").and_return articles
@@ -1142,7 +1142,7 @@
     <div class="slide">
       <h1>Mocks and stubs</h1>
       <h2>Expecting method calls</h2>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Form" do
           let (:model) { double :model }
           let (:form) { Form.new model }
@@ -1170,7 +1170,7 @@
     <div class="slide">
       <h1>Mocks and stubs</h1>
       <h2>Expecting calls with arguments</h2>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe "Form" do
           let (:logger) { double :logger }
           let (:form) { Form.new logger }
@@ -1199,18 +1199,18 @@
       <h1>Mocks and stubs</h1>
       <h2>More mockery</h2>
       <p>You can specify call counts:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo.should_receive(:bar).once
         foo.should_receive(:bar).at_least(3).times
       </pre>
       <p>Arguments can be less strict:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo.should_receive(:bar).with(anything(), an_instance_of(String))
         foo.should_receive(:bar).with(hash_including(:a =&gt; 1))
         foo.should_receive(:bar).with(/^[a-z]*$/)
       </pre>
       <p>Mock methods can return values just like stubs:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         foo.should_receive(:bar).and_return "baz"
       </pre>
     </div>
@@ -1219,7 +1219,7 @@
       <h1>Mocks and stubs</h1>
       <h2>Method order</h2>
       <p>Occasionally you need methods to be called in the right order:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         it "logs the event" do
           logger.should_receive(:info).with(form.id).ordered
           logger.should_receive(:info).with("Form submitted").ordered
@@ -1240,7 +1240,7 @@
       <h1>Mocks and stubs</h1>
       <h2>Playing in irb</h2>
       <p>If you want to experiment with mocks and stubs in irb:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         require "rspec/mocks/standalone"
       </pre>
     </div>
@@ -1249,7 +1249,7 @@
       <h1>Rails</h1>
       <p><code>rspec-rails</code> is a drop-in replacement for Rails&rsquo;s built-in testing.</p>
       <p>Add it to your <code>Gemfile</code>:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         group :test, :development do
           gem "rspec-rails", "~&gt; 2.4"
         end
@@ -1263,7 +1263,7 @@
     <div class="slide">
       <h1>Rails models</h1>
       <p>Fake ActiveRecord objects are useful in controller specs:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         article = mock_model Article, :text =&gt; "Hello world"
       </pre>
       <p>Testing errors:</p>
@@ -1276,7 +1276,7 @@
       <h1>Rails controllers</h1>
       <h2>View integration</h2>
       <p>Views are stubbed by default. To render them, use <code>render_views</code>:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe WidgetsController do
           render_views
 
@@ -1295,7 +1295,7 @@
       <h2>Anonymous controller</h2>
       <p>To test behaviour in <code>ApplicationController</code>, you can define
         actions on the fly in your spec:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe ApplicationController do
           controller do
             def index
@@ -1316,7 +1316,7 @@
     <div class="slide">
       <h1>Rails helpers</h1>
       <p>Access helper methods via the <code>helper</code> object:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe ApplicationHelper do
           describe "#page_title" do
             it "returns the value of @title" do
@@ -1333,7 +1333,7 @@
       <h2>Accessing other helpers</h2>
       <p>If the helper under test calls methods in other helpers,
         you&rsquo;ll need to include them in your spec:</p>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         describe SomeHelper do
           helper do
             include ApplicationHelper
@@ -1346,7 +1346,7 @@
 
     <div class="slide">
       <h1>Rails routing</h1>
-      <pre class="ruby">
+      <pre class="brush: ruby">
         { :get =&gt; "/" }.should route_to(:controller =&gt; "welcome")
 
         { :get =&gt; "/widgets" }.should_not be_routable
