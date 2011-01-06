@@ -77,6 +77,11 @@ h2 {
   font-size: 2.5em;
 }
 
+.licence {
+  margin-top: 2em;
+  text-align: center;
+}
+
 pre {
   font-family: Menlo, "Courier New", Courier, fixed, sans-serif;
 }
