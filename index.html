@@ -451,11 +451,11 @@
           RUBY_1_9 = (RUBY_VERSION =~ /^1\.9/)
 
           describe "Something" do
-            it "does that when using 1.9", :if =&gt; RUBY_1_9 do
+            it "does this when using 1.9", :if =&gt; RUBY_1_9 do
               ...
             end
 
-            it "Does this when not using 1.9", :unless =&gt; RUBY_1_9 do
+            it "Does that when not using 1.9", :unless =&gt; RUBY_1_9 do
               ...
             end
           end
