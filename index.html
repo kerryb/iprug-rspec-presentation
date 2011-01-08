@@ -448,12 +448,14 @@
       <h1>Implicit filtering</h1>
       <div class="vcenter">
         <pre class="brush: ruby">
+          RUBY_1_9 = (RUBY_VERSION =~ /^1\.9/)
+
           describe "Something" do
-            it "behaves one way in 1.8", if =&gt; { VERSION =~ /^1.8/ } do
+            it "does that when using 1.9", :if =&gt; RUBY_1_9 do
               ...
             end
 
-            it "behaves another way in 1.9", if =&gt; { VERSION =~ /^1.9/ } do
+            it "Does this when not using 1.9", :unless =&gt; RUBY_1_9 do
               ...
             end
           end
