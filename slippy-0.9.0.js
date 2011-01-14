@@ -96,7 +96,7 @@
             $('.slideContent')
                 .height(slideH*0.95)
                 .css('margin', (slideH*0.05).toString() + "px auto 0");
-            $('img').css('width', function(val) {
+            $('img:not(.leavealone)').css('width', function(val) {
                 var ratio, imgWidth;
                 imgWidth = $.data(this, 'origWidth');
                 if (!imgWidth) {

@@ -90,6 +90,11 @@ code {
   color: grey;
 }
 
+.footer {
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 200;
+}
+
 blockquote {
   background-color: #ffc;
   padding: 1em;
